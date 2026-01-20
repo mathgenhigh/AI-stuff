@@ -15,7 +15,7 @@ print(f"Target distribution: {y.value_counts()}\n")
 
 # Exploratory Data Analysis (EDA)
 print(f"\nFeature statistics: {X.describe()}\n")
-print(f"\nFist 5 rows: {X.head()}\n")
+print(f"\nFirst 5 rows: {X.head()}\n")
 
 # Split data into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
