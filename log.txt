@@ -1,0 +1,234 @@
+
+1. DT
+
+Dataset shape: (569, 30)
+Target distribution: target
+1    357
+0    212
+Name: count, dtype: int64
+
+
+Feature statistics:        mean radius  mean texture  ...  worst symmetry  worst fractal dimension
+count   569.000000    569.000000  ...      569.000000               569.000000
+mean     14.127292     19.289649  ...        0.290076                 0.083946
+std       3.524049      4.301036  ...        0.061867                 0.018061
+min       6.981000      9.710000  ...        0.156500                 0.055040
+25%      11.700000     16.170000  ...        0.250400                 0.071460
+50%      13.370000     18.840000  ...        0.282200                 0.080040
+75%      15.780000     21.800000  ...        0.317900                 0.092080
+max      28.110000     39.280000  ...        0.663800                 0.207500
+
+[8 rows x 30 columns]
+
+
+Fist 5 rows:    mean radius  mean texture  mean perimeter  ...  worst concave points  worst symmetry  worst fractal dimension
+0        17.99         10.38          122.80  ...                0.2654          0.4601                  0.11890
+1        20.57         17.77          132.90  ...                0.1860          0.2750                  0.08902
+2        19.69         21.25          130.00  ...                0.2430          0.3613                  0.08758
+3        11.42         20.38           77.58  ...                0.2575          0.6638                  0.17300
+4        20.29         14.34          135.10  ...                0.1625          0.2364                  0.07678
+
+[5 rows x 30 columns]
+
+
+Accuracy: 0.9473684210526315
+
+Confusion Matrix: [[40  3]
+ [ 3 68]]
+
+--------------------
+
+2. NBC
+
+Dataset shape: (569, 30)
+Target distribution: target
+1    357
+0    212
+Name: count, dtype: int64
+
+
+Feature statistics:        mean radius  mean texture  ...  worst symmetry  worst fractal dimension
+count   569.000000    569.000000  ...      569.000000               569.000000
+mean     14.127292     19.289649  ...        0.290076                 0.083946
+std       3.524049      4.301036  ...        0.061867                 0.018061
+min       6.981000      9.710000  ...        0.156500                 0.055040
+25%      11.700000     16.170000  ...        0.250400                 0.071460
+50%      13.370000     18.840000  ...        0.282200                 0.080040
+75%      15.780000     21.800000  ...        0.317900                 0.092080
+max      28.110000     39.280000  ...        0.663800                 0.207500
+
+[8 rows x 30 columns]
+
+
+Fist 5 rows:    mean radius  mean texture  mean perimeter  ...  worst concave points  worst symmetry  worst fractal dimension
+0        17.99         10.38          122.80  ...                0.2654          0.4601                  0.11890
+1        20.57         17.77          132.90  ...                0.1860          0.2750                  0.08902
+2        19.69         21.25          130.00  ...                0.2430          0.3613                  0.08758
+3        11.42         20.38           77.58  ...                0.2575          0.6638                  0.17300
+4        20.29         14.34          135.10  ...                0.1625          0.2364                  0.07678
+
+[5 rows x 30 columns]
+
+
+Accuracy: 0.9473684210526315
+
+Confusion Matrix: [[40  3]
+ [ 3 68]]
+
+
+----------------
+
+3. GA
+
+Generation 1 best fitness: 20
+Generation 2 best fitness: 18
+Generation 3 best fitness: 18
+Generation 4 best fitness: 18
+Generation 5 best fitness: 18
+Generation 6 best fitness: 18
+Generation 7 best fitness: 18
+Generation 8 best fitness: 18
+Generation 9 best fitness: 18
+Generation 10 best fitness: 18
+
+Best solution: items [4, 5] with value 18
+
+
+-----------------
+
+4. Fuzzy Logic Controller
+
+Since I'm doing this on my own, my dataset number will be: 103683 % 29 = 8
+
+- Problem description (human language)
+
+    The goal of the fuzzy controller is to determine the fan speed in a room based on the
+    current temperature and humidity level.
+
+    A human does not control the fan using exact formulas, but rather using vague rules 
+    such as: “If the temperature is high and the humidity is high, the fan should run fast.”
+
+    Fuzzy logic allows us to model this human-like reasoning using linguistic variables and 
+    rules instead of precise mathematical equations.
+
+    - Input and output variables
+
+        - Inputs:
+
+            1. Temperature (°C)
+                - Range: 0 – 40
+
+            2. Humidity (%)
+                - Range: 0 – 100
+
+        - Output:
+
+            Fan speed
+                - Range: 0 – 100 (%)
+
+- Fuzzy sets & membership functions
+
+    I will use simple triangular membership functions.
+
+    - Input 1: Temperature
+
+        Linguistic value        Range        Description
+
+        Low                     0-15        Cold room        
+
+        Medium                  15-30        Comfortable
+
+        High                    30-40        Hot room 
+
+
+        - Membership functions:
+            - Low: triangle (0, 0, 15)
+            - Medium: triangle (15, 25, 30)
+            - High: triangle (30, 40, 40)
+
+
+    - Input 2: Humidity
+
+
+        Linguistic value        Range       Description
+
+        Slow                    0-30        Low speed
+
+        Medium                  30-70       Normal speed 
+
+        Fast                    70-100      High speed
+
+        - Membership functions:
+            - Low: triangle (0, 0, 30)
+            - Medium: triangle (30, 50, 70)
+            - High: triangle (70, 100, 100)
+
+    - Output: Fan speed
+
+        Linguistic value        Range       Description
+
+        Slow                    0-30        Low speed
+
+        Medium                  30-70       Normal speed 
+
+        Fast                    70-100      High speed
+
+        - Membership functions:
+            - Low: triangle (0, 0, 30)
+            - Medium: triangle (30, 50, 70)
+            - High: triangle (70, 100, 100)
+
+- Fuzzy rules
+
+    These rules reflect human reasoning:
+
+
+    Rule       IF Temperature       AND Humidity        THEN Fan Speed 
+
+    R1         Low                  Low                 Slow 
+
+    R2         Low                  High                Medium 
+
+    R3         Medium               Low                 Medium 
+
+    R4         Medium               Medium              Medium
+
+    R5         High                 Medium              Fast 
+
+    R6         High                 High                Fast 
+
+
+- System evaluation (2 test cases)
+
+    Now it's time to check how the controller works for two sample inputs,
+    as required.
+
+    Test Case 1
+        
+        - Input:
+            - Temperature = 18C
+            - Humidity = 30%
+        - Reasoning:
+            - Temperature -> mostly Low 
+            - Humidity -> mostly Low 
+        - Activated rule:
+            - R1 -> Fan Speed = Slow 
+        - Output (approximate):
+            - Fan speed ~= 20-30%
+
+    Test Case 2
+
+        - Input:
+            - Temperature = 32C
+            - Humidity = 75%
+        - Reasoning:
+            - Temperature -> High 
+            - Humidity -> High 
+        - Activated rule:
+            - R6 -> Fan Speed = Fast 
+        - Output (approximate):
+            - Fan speed ~= 80-90%
+
+Temperature: 18C, Humidity: 30% -> Fan Speed: 41.43%
+Temperature: 32C, Humidity: 75% -> Fan Speed: 80.00%
+
